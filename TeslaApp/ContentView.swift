@@ -11,31 +11,38 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        ZStack {
-            ScrollView {
-                VStack(spacing: 20){
-                    HomeHeader()
-                    CustomDivider()
-                    CarSection()
-                    CustomDivider()
-                    CategoryView(title: "Quick Shortcuts",showEdit: true, actionItems: quickShortcuts)
-                    CustomDivider()
-                    CategoryView(title: "Recent Actions", actionItems: recentActions)
-                    CustomDivider()
-                    AllSettings()
-                    ReorderButton()
-                    
+        NavigationView {
+            ZStack {
+                
+                    ScrollView {
+                        VStack(spacing: 20){
+                            HomeHeader()
+                            CustomDivider()
+                            CarSection()
+                            CustomDivider()
+                            CategoryView(title: "Quick Shortcuts",showEdit: true, actionItems: quickShortcuts)
+                            CustomDivider()
+                            CategoryView(title: "Recent Actions", actionItems: recentActions)
+                            CustomDivider()
+                            AllSettings()
+                            ReorderButton()
+                            
+                        }
+                        .padding()
+                        
+                        
+             
                 }
-                .padding()
                 
-                
+                voiceCommandButton()
             }
-            
-            voiceCommandButton()
+            .frame(maxWidth: .infinity,maxHeight: .infinity)
+            .background(Color("DarkGray"))
+            .foregroundColor(Color.white)
+            .navigationTitle("Mach Five")
+            .navigationBarHidden(true)
         }
-        .frame(maxWidth: .infinity,maxHeight: .infinity)
-        .background(Color("DarkGray"))
-        .foregroundColor(Color.white)
+                
     }
 }
 
@@ -59,8 +66,8 @@ struct voiceCommandButton: View {
                     .background(Color("Green"))
                     .foregroundColor(Color("DarkGray"))
                     .clipShape(Circle())
-                    .padding()
-                    .shadow(radius: 10)
+                    .padding(25)
+                    .shadow(color:.black,radius: 10,x: -2,y: 2)
                 
                 
                 
@@ -109,37 +116,7 @@ struct HomeHeader: View {
 }
 
 
-struct GeneralButton: View {
-    
-    var icon: String
-    
-    var body: some View {
-        Image(systemName: icon)
-            .imageScale(.large)
-            .frame(width: 44,height: 44)
-            .background(Color.white.opacity(0.07))
-        
-            .clipShape(Circle())
-            .overlay(
-                Circle()
-                    .stroke(Color.white.opacity(0.1),lineWidth: 0.5)
-            )
-        
-        
-    }
-}
 
-
-
-struct CustomDivider: View {
-    var body: some View {
-        Rectangle()
-            .frame(maxWidth: .infinity)
-            .frame(height: 0.25)
-            .background(Color.white)
-            .opacity(0.1)
-    }
-}
 
 
 
@@ -229,30 +206,7 @@ struct CategoryView: View {
     }
 }
 
-struct ActionButton: View {
-    
-    var item: ActionItem
-    
-    var body: some View {
-        VStack(alignment: .center){
-            
-            GeneralButton(icon: item.icon)
-            Text(item.text)
-                .fontWeight(.semibold)
-                .font(.system(size: 12,design: .default))
-                .frame(width: 72)
-                .multilineTextAlignment(.center)
-        }
-    }
-}
 
-
-
-struct ActionItem: Hashable {
-    var icon: String
-    var text: String
-    
-}
 
 let quickShortcuts: [ActionItem] = [ActionItem(icon: "bolt.fill", text: "Charging"),ActionItem(icon: "fanblades.fill", text: "Fan On"),ActionItem(icon: "playpause.fill", text: "Media Controls"),ActionItem(icon: "bolt.car", text: "Close Charge Port")]
 
@@ -266,9 +220,18 @@ struct AllSettings: View {
         VStack {
             CategoryHeader(title: "All Settings")
             LazyVGrid(columns: [GridItem(.fixed(170)),GridItem(.fixed(170))]) {
-                SettingBlock(icon: "car.fill", tile: "Controls", subtitle: "")
+                NavigationLink(destination: CarControlsView()) {
+                    
+                    
+                    
+                    SettingBlock(icon: "car.fill", tile: "\nControls", subtitle: "")
+                    
+                }
                 SettingBlock(icon: "fanblades.fill", tile: "Climate",subtitle: "INTERIOR 68° F", backgroundColor: Color.blue)
-                SettingBlock(icon: "location.fill", tile: "Location",subtitle: "EMPIRE STATE BUILDING")
+                NavigationLink(destination: LocationView()) {
+                    
+                    SettingBlock(icon: "location.fill", tile: "Location",subtitle: "EMPIRE STATE BUILDING")
+                }
                 SettingBlock(icon: "checkerboard.shield", tile: "Security",subtitle: "0 EVENTS DETECTED")
                 SettingBlock(icon: "sparkles", tile: "Upgrades",subtitle: "3 UPGRADES AVAILABLE")
                 
@@ -289,23 +252,30 @@ struct SettingBlock: View {
     var backgroundColor: Color = Color.white.opacity(0.05)
     
     var body: some View {
-        HStack {
+        HStack(alignment: .center,spacing:0) {
             Image(systemName: icon)
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading,spacing: 4) {
                 Text(tile)
                     .fontWeight(.semibold)
+                    .font(.system(size: 14, weight: .medium, design: .default))
                     .fixedSize(horizontal: true, vertical: false)
                 
                 
-                Text(subtitle)
-                    .font(.system(size: 10,weight: .medium,design: .default))
+                Text(subtitle.uppercased())
+                    .font(.system(size: 6,weight: .medium,design: .default))
+                    .frame(maxWidth: .infinity,alignment: .leading)
+                    
                 
                     .lineLimit(1)
                 
                 
             }
+            .padding(.leading, 3)
             Spacer()
             Image(systemName: "chevron.right")
+            
+            
+            
         }.padding()
             .background(backgroundColor)
             .clipShape(RoundedRectangle(cornerRadius: 16))
