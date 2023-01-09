@@ -14,6 +14,7 @@
 		E29001CF2966EB1200746093 /* CarControlsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29001CE2966EB1200746093 /* CarControlsView.swift */; };
 		E29001D129670FD400746093 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29001D029670FD400746093 /* LocationView.swift */; };
 		E29001D3296710B100746093 /* CommonComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29001D2296710B000746093 /* CommonComponents.swift */; };
+		E2AFACD4296B0AED002222C0 /* ActionComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AFACD3296B0AED002222C0 /* ActionComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		E29001CE2966EB1200746093 /* CarControlsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarControlsView.swift; sourceTree = "<group>"; };
 		E29001D029670FD400746093 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		E29001D2296710B000746093 /* CommonComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonComponents.swift; sourceTree = "<group>"; };
+		E2AFACD3296B0AED002222C0 /* ActionComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			children = (
 				E29001C02966476800746093 /* TeslaAppApp.swift */,
 				E29001C22966476800746093 /* ContentView.swift */,
+				E2AFACD3296B0AED002222C0 /* ActionComponents.swift */,
 				E29001CE2966EB1200746093 /* CarControlsView.swift */,
 				E29001D029670FD400746093 /* LocationView.swift */,
 				E29001D2296710B000746093 /* CommonComponents.swift */,
@@ -149,6 +152,7 @@
 				E29001C32966476800746093 /* ContentView.swift in Sources */,
 				E29001D129670FD400746093 /* LocationView.swift in Sources */,
 				E29001D3296710B100746093 /* CommonComponents.swift in Sources */,
+				E2AFACD4296B0AED002222C0 /* ActionComponents.swift in Sources */,
 				E29001CF2966EB1200746093 /* CarControlsView.swift in Sources */,
 				E29001C12966476800746093 /* TeslaAppApp.swift in Sources */,
 			);
